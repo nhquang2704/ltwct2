@@ -78,10 +78,9 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
 
     @Override
     public void insert(UserModel user) {
-        String sql = "INSERT INTO user(id,username, password, images, fullname, emal, phone, roleid, createDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
+        String sql = "INSERT INTO users(username, password, images, fullname, emal, phone, roleid, createDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+       
         try {
-        	//conn = new 
         	ps = conn.prepareStatement(sql); //nem cau sql vao cho thuc thi
         	
         	ps.setInt(1, user.getId());
@@ -91,11 +90,14 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
         	ps.setString(5, user.getFullname());
         	ps.setString(6, user.getEmail());
         	ps.setString(7,user.getPhone());
-        	ps.setInt(8,user.getRoleid());
+        	ps.setInt(8, user.getRoleid());
         	ps.setDate(9, user.getCreateDate());
         	
-        	ps.executeUpdate();
+        	ps.executeQuery();
+        	
+        	
         } catch (SQLException e) {
+        	
         	e.printStackTrace();
         }
     }
@@ -206,5 +208,52 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
     }
 
 
-    
+	@Override
+	public UserModel findByResetToken(String token) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	@Override
+	public UserModel findByEmail(String email) {
+	    String sql = "SELECT * FROM user WHERE email = ? OR username = ?";
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ps.setString(1, email);
+	        ps.setString(2, email);
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            return new UserModel(
+	                rs.getInt("id"),
+	                rs.getString("username"),
+	                rs.getString("password"),
+	                rs.getString("email"),
+	                rs.getString("fullname"),
+	                rs.getString("images"),
+	                rs.getString("phone"),
+	                rs.getInt("roleid"),
+	                rs.getDate("createDate")
+	            );
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+	
+	@Override
+	public void update(UserModel user) {
+	    String sql = "UPDATE user SET password = ? WHERE id = ?";
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ps.setString(1, user.getPassword());  // Nên mã hóa mật khẩu trước khi lưu
+	        ps.setInt(2, user.getId());
+	        ps.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+
+	
 }

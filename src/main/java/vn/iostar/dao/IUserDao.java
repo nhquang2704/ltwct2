@@ -21,4 +21,9 @@ public interface IUserDao {
 	
 	boolean checkExistPhone(String phone);
 
+	UserModel findByResetToken(String token);
+
+	UserModel findByEmail(String email);
+
+	void update(UserModel user);
 }

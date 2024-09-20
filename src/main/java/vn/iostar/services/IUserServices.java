@@ -20,4 +20,14 @@ public interface IUserServices {
 	
 	boolean checkExistPhone(String phone);
 
+	String generateResetToken(String email);
+
+	boolean isValidToken(String token);
+	
+	UserModel FindByEmail(String email);
+
+	UserModel findById(int userId);
+
+	void update(UserModel user);
+
 }

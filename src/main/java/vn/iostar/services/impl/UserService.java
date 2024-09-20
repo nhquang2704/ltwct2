@@ -32,7 +32,7 @@ public class UserService implements IUserServices{
 	public boolean register(String username, String password, String email, String fullname, String phone ) {
 		if (userDao.checkExistUsername(username)) {
 			return false;
-	}
+		}
 	long millis=System.currentTimeMillis();
 	java.sql.Date date=new java.sql.Date(millis);
     userDao.insert(new UserModel(99,username,password,email,fullname,null,phone,5,date));
@@ -60,6 +60,40 @@ public class UserService implements IUserServices{
 	public void insert(UserModel user) {
 		
 		userDao.insert(user);
+		
+	}
+
+
+	@Override
+	public String generateResetToken(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean isValidToken(String token) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public UserModel FindByEmail(String email) {
+		return userDao.findByEmail(email);
+	}
+
+
+	@Override
+	public UserModel findById(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void update(UserModel user) {
+		userDao.update(user);
 		
 	}
 }
