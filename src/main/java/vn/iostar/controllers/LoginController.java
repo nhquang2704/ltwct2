@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		
-		//lay du lieu tu view
+		//lấy dữ liệu từ view
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		String remember = req.getParameter("remember");
