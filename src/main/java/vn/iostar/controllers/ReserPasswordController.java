@@ -43,11 +43,7 @@ public class ReserPasswordController extends HttpServlet {
 		        req.setAttribute("alert", "Email không tồn tại trong hệ thống.");
 		        req.getRequestDispatcher("/views/forgot_password.jsp").forward(req, resp);
 		    }
-		}
-	
-		
-		
-		
+		}					
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int userId = Integer.parseInt(req.getParameter("userId"));

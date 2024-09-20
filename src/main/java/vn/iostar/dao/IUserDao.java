@@ -23,7 +23,7 @@ public interface IUserDao {
 
 	UserModel findByResetToken(String token);
 
-	UserModel findByEmail(String email);
-
 	void update(UserModel user);
+
+	UserModel findByEmail(String email);
 }

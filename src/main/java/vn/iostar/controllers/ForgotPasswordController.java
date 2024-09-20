@@ -63,7 +63,7 @@ public class ForgotPasswordController extends HttpServlet {
         if (user != null) {
             // Chuyển hướng tới trang đặt lại mật khẩu
             req.setAttribute("userId", user.getId());
-            req.getRequestDispatcher("/reset-password.jsp").forward(req, resp);
+            req.getRequestDispatcher("/reset_password.jsp").forward(req, resp);
         } else {
             // Thông báo không tìm thấy người dùng
             req.setAttribute("alert", "Email or Username not found.");

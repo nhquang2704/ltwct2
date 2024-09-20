@@ -77,17 +77,9 @@ public class UserService implements IUserServices{
 		return false;
 	}
 
-
-	@Override
-	public UserModel FindByEmail(String email) {
-		return userDao.findByEmail(email);
-	}
-
-
 	@Override
 	public UserModel findById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.findbyId(userId);
 	}
 
 
@@ -95,5 +87,11 @@ public class UserService implements IUserServices{
 	public void update(UserModel user) {
 		userDao.update(user);
 		
+	}
+
+
+	@Override
+	public UserModel FindByEmail(String email) {
+		return userDao.findByEmail(email);
 	}
 }
