@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		String password = req.getParameter("password");
 		String remember = req.getParameter("remember");
 		
-		//kiem tra tham so
+		//kiểm tra tham số
 		boolean isRememberMe = false;
 		if("on".equals(remember)){
 			 isRememberMe = true;
