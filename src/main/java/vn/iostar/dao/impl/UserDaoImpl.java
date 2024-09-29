@@ -12,7 +12,7 @@ import vn.iostar.configs.DBConnectSQL;
 import vn.iostar.dao.IUserDao;
 import vn.iostar.models.UserModel;
 
-public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
+public class UserDaoImpl extends DBConnectSQL implements IUserDao {
 
     public Connection conn = null;
     public PreparedStatement ps = null;
@@ -78,22 +78,30 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
 
     @Override
     public void insert(UserModel user) {
-        String sql = "INSERT INTO users(username, password, images, fullname, emal, phone, roleid, createDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users(username, password, images, fullname, email, phone, roleid, createDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
        
         try {
-        	ps = conn.prepareStatement(sql); //nem cau sql vao cho thuc thi
-        	
-        	ps.setInt(1, user.getId());
-        	ps.setString(2, user.getUsername());
-        	ps.setString(3, user.getPassword());
-        	ps.setString(4, user.getImages());
-        	ps.setString(5, user.getFullname());
-        	ps.setString(6, user.getEmail());
-        	ps.setString(7,user.getPhone());
-        	ps.setInt(8, user.getRoleid());
-        	ps.setDate(9, user.getCreateDate());
-        	
-        	ps.executeQuery();
+        	try {
+				conn = new DBConnectSQL().getConnection();
+				
+				ps = conn.prepareStatement(sql); //nem cau sql vao cho thuc thi
+	        	
+			    
+	        	ps.setString(1, user.getUsername());
+	        	ps.setString(2, user.getPassword());
+	        	ps.setString(3, user.getImages());
+	        	ps.setString(4, user.getFullname());
+	        	ps.setString(5, user.getEmail());
+	        	ps.setString(6,user.getPhone());
+	        	ps.setInt(7, user.getRoleid());
+	        	ps.setDate(8, user.getCreateDate());
+	        	
+	        	ps.executeUpdate();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	ps.executeUpdate();
         	
         	
         } catch (SQLException e) {

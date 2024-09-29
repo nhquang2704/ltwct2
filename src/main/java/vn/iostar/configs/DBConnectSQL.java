@@ -15,28 +15,27 @@ public class DBConnectSQL {
 	private final String password = "@quang123";
 	
 	
-	public Connection getConnection() throws Exception {
+	public Connection getConnection() throws ClassNotFoundException {
+		Connection conn = null;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			String url = "jbdc:sqlserver://"+serverName+":"+portNumber + "\\" + instance +";databaseName="+dbName;
-			
 			if(instance == null || instance.trim().isEmpty())
 				
 				url = "jdbc:sqlserver://" + serverName + ":" +portNumber + ";database=" + dbName;
+			conn = DriverManager.getConnection(url,userID, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 			
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
-			return DriverManager.getConnection(url, userID,password);
+			
+			
+			return conn;
 	}
 			
 	
-	//Test ctrinh. Kisch phai chuot chon run as ->java application   
-	   public static void main(String[] args) {
-		   try {
-			   new DBConnectMySQL();
-			   System.out.print(new DBConnectSQL().getConnection());
-		   }catch(Exception e) {
-			   e.printStackTrace();
-		   }
-	   }
+	
 	
 }
 

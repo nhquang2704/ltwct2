@@ -34,6 +34,20 @@ public class UserModel implements Serializable{
 	}
 
 
+	public UserModel(String username, String password, String email, String fullname, String images, String phone,
+			int roleid, Date createDate) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.fullname = fullname;
+		this.images = images;
+		this.phone = phone;
+		this.roleid = roleid;
+		this.createDate = createDate;
+	}
+
+
 	public int getId() {
 		return id;
 	}

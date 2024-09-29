@@ -35,7 +35,7 @@ public class UserService implements IUserServices{
 		}
 	long millis=System.currentTimeMillis();
 	java.sql.Date date=new java.sql.Date(millis);
-    userDao.insert(new UserModel(99,username,password,email,fullname,null,phone,5,date));
+    userDao.insert(new UserModel(username,password,email,fullname,null,phone,5,date));
 	return true;
 	}
 	
