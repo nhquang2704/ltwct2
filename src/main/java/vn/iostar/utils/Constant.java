@@ -5,7 +5,7 @@ public class Constant {
 	public static final String COOKIE_REMEMBER = "username";
 	
 	public static class Path {
-        public static final String REGISTER = "/views/register.jsp"; // Đường dẫn đến trang đăng ký
+        public static final String REGISTER = "/views/user/register.jsp"; // Đường dẫn đến trang đăng ký
     }
 	
 }

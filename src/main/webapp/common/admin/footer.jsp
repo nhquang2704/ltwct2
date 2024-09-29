@@ -1,11 +1,3 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Footer</title>
-</head>
-<body>
-</body>
-</html>
+<h1>footer của admin</h1>
