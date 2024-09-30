@@ -3,77 +3,63 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Đăng Nhập</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .login-container {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-        }
-        .login-container h2 {
-            text-align: center;
-        }
-        .login-container input[type="text"],
-        .login-container input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .login-container input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .login-container input[type="submit"]:hover {
-            background-color: #218838;
-        }
-        .login-container a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        .login-container a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-<div class="login-container">
-    <h2>Đăng Nhập</h2>
-    <form action="/ltwct2/login" method="post">
-		<c:if test="${alert != null}">
+<!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <div class="content-form-page">
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                <c:if test="${alert != null}">
 			<h3 class="alert alertdanger">${alert}</h3>
 		</c:if>
-        <label for="username">Tên đăng nhập:</label>
-        <input type="text" id="username" name="username" required>
+                  <form action="${pageContext.request.contextPath}/login" method="post" class="form-horizontal form-without-legend" role="form">
+                    <div class="form-group">
+                      <label for="email" class="col-lg-4 control-label">Username <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" id="username" name ="username" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="password" class="form-control" id="password" name="password" >
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0">
+                        <a href="${pageContext.request.contextPath}/forgot_password">Forget Password?</a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-10 padding-right-30">
+                        <hr>
+                        <div class="login-socio">
+                            <p class="text-muted">or login using:</p>
+                            <ul class="social-icons">
+                                <li><a href="#" data-original-title="facebook" class="facebook" title="facebook"></a></li>
+                                <li><a href="#" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
+                                <li><a href="#" data-original-title="Google Plus" class="googleplus" title="Google Plus"></a></li>
+                                <li><a href="#" data-original-title="Linkedin" class="linkedin" title="LinkedIn"></a></li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-4 col-sm-4 pull-right">
+                  <div class="form-info">
+                    <h2><em>Important</em> Information</h2>
+                    <p>Duis autem vel eum iriure at dolor vulputate velit esse vel molestie at dolore.</p>
 
-        <label for="password">Mật khẩu:</label>
-        <input type="password" id="password" name="password" required>
-
-        <input type="submit" value="Đăng nhập">
-    </form>
-
-    <a href="${pageContext.request.contextPath}/register">Đăng ký tài khoản nếu chưa có</a>
-    <a href="forgot_password.jsp">Quên mật khẩu?</a>
-</div>
-
-</body>
-</html>
+                    <button type="button" class="btn btn-default">More details</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- END CONTENT -->

@@ -4,91 +4,89 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Đăng Ký</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .register-container {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-        }
-        .register-container h2 {
-            text-align: center;
-        }
-        .register-container input[type="text"],
-        .register-container input[type="password"],
-        .register-container input[type="email"],
-        .register-container input[type="tel"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .register-container input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .register-container input[type="submit"]:hover {
-            background-color: #218838;
-        }
-        .register-container a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        .register-container a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-<div class="register-container">
-    <h2>Đăng Ký</h2>
-    <form action="/ltwct2/register" method="post">
-        <c:if test="${alert != null}">
+<!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            
+            <div class="content-form-page">
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                <c:if test="${alert != null}">
             <h3 class="alert alert-danger">${alert}</h3>
         </c:if>
+                  <form action="${pageContext.request.contextPath}/register" method="post" class="form-horizontal" role="form">
+                    <fieldset>
+                      <legend>Your personal details</legend>
+                      <div class="form-group">
+                        <label for="firstname" class="col-lg-4 control-label">Full Name <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" class="form-control" id="fullname" name="fullname" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastname" class="col-lg-4 control-label">User Name <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" class="form-control" id="email" name="email" required>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="phone" class="col-lg-4 control-label">Phone Number <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <legend>Your password</legend>
+                      <div class="form-group">
+                        <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="confirm-password" class="col-lg-4 control-label">Confirm password <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <legend>Newsletter</legend>
+                      <div class="checkbox form-group">
+                        <label>
+                          <div class="col-lg-4 col-sm-4">Singup for Newsletter</div>
+                          <div class="col-lg-8 col-sm-8">
+                            <input type="checkbox">
+                          </div>
+                        </label>
+                      </div>
+                    </fieldset>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
+                        <button type="submit" class="btn btn-primary">Create an account</button>
+                        <button type="button" class="btn btn-default">Cancel</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-4 col-sm-4 pull-right">
+                  <div class="form-info">
+                    <h2><em>Important</em> Information</h2>
+                    <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper suscipit lobortis nisl aliquip  commodo quat.</p>
 
-        <label for="fullname">Họ và tên:</label>
-        <input type="text" id="fullname" name="fullname" required>
+                    <p>Duis autem vel eum iriure at dolor vulputate velit esse vel molestie at dolore.</p>
 
-        <label for="username">Tên đăng nhập:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="phone">Số điện thoại:</label>
-        <input type="tel" id="phone" name="phone" required>
-
-        <label for="password">Mật khẩu:</label>
-        <input type="password" id="password" name="password" required>
-
-        <label for="confirm_password">Xác nhận mật khẩu:</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-
-        <input type="submit" value="Đăng ký">
-    </form>
-
-    <a href="login.jsp">Đã có tài khoản? Đăng nhập</a>
-</div>
-
-</body>
-</html>
+                    <button type="button" class="btn btn-default">More details</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->

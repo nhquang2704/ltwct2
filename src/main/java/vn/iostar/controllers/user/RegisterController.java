@@ -25,29 +25,29 @@ public class RegisterController extends HttpServlet {
 		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession(false);
-		if (session != null && session.getAttribute("username") != null) {
-		resp.sendRedirect(req.getContextPath() + "/admin");
-		return;
-		}
-		// Check cookie
-	    Cookie[] cookies = req.getCookies();
-	    if (cookies != null) {
-	        for (Cookie cookie : cookies) {
-	            if (cookie.getName().equals("username")) {
-	                session = req.getSession(true);
-	                session.setAttribute("username", cookie.getValue());
-	                resp.sendRedirect(req.getContextPath() + "/admin");
-	                return;
-	            }
-	        }
-	    }
-
-	    // Nếu session đã tồn tại và đã có "username" trong session
-	    if (session != null && session.getAttribute("username") != null) {
-	        resp.sendRedirect(req.getContextPath() + "/admin");
-	        return;
-	    }
+//		HttpSession session = req.getSession(false);
+//		if (session != null && session.getAttribute("username") != null) {
+//		resp.sendRedirect(req.getContextPath() + "/admin");
+//		return;
+//		}
+//		// Check cookie
+//	    Cookie[] cookies = req.getCookies();
+//	    if (cookies != null) {
+//	        for (Cookie cookie : cookies) {
+//	            if (cookie.getName().equals("username")) {
+//	                session = req.getSession(true);
+//	                session.setAttribute("username", cookie.getValue());
+//	                resp.sendRedirect(req.getContextPath() + "/admin");
+//	                return;
+//	            }
+//	        }
+//	    }
+//
+//	    // Nếu session đã tồn tại và đã có "username" trong session
+//	    if (session != null && session.getAttribute("username") != null) {
+//	        resp.sendRedirect(req.getContextPath() + "/admin");
+//	        return;
+//	    }
 
 	    // Nếu không có session hay cookie nào hợp lệ, chuyển tới trang đăng ký
 	    req.getRequestDispatcher(Constant.Path.REGISTER).forward(req, resp);

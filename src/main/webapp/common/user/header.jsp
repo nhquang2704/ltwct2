@@ -34,7 +34,24 @@
                         <li><a href="shop-account.html">My Account</a></li>
                         <li><a href="shop-wishlist.html">My Wishlist</a></li>
                         <li><a href="shop-checkout.html">Checkout</a></li>
-                        <li><a href="page-login.html">Log In</a></li>
+                        <li>
+    <c:choose>
+    	<c:when test="${sessionScope.account == null}">
+        	<a href="${pageContext.request.contextPath}/login">Login</a> | 
+               <a href="${pageContext.request.contextPath}/register">Register</a></li>
+                
+    	</c:when>
+    	<c:otherwise>
+        	<a href="${pageContext.request.contextPath}/member/myaccount">${sessionScope.account.fullname}</a> | 
+           	<a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><i class="search fa fa-search search-button"></i></li>
+            </ul>
+        </div>
+    	</c:otherwise>
+	</c:choose>
+
+                        
+                        </li>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
