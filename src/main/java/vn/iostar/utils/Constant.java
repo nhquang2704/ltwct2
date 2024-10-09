@@ -8,4 +8,6 @@ public class Constant {
         public static final String REGISTER = "/views/user/register.jsp"; // Đường dẫn đến trang đăng ký
     }
 	
+	public static final String UPLOAD_DIRECTORY = "E:\\upload";
+	
 }
